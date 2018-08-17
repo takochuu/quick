@@ -1,22 +1,41 @@
 package quick
 
-import "os"
+import (
+	"os"
+
+	"github.com/takochuu/quick/factory"
+)
+
+const (
+	migration = "migrate"
+	create    = "create"
+	rollback  = "rollback"
+	up        = "up"
+	down      = "down"
+)
 
 type Quick struct {
-	Stderr *os.File
-	Stdin  *os.File
-	Stdout *os.File
+	Executor factory.Executor
+	Stderr   *os.File
+	Stdin    *os.File
+	Stdout   *os.File
 }
 
-func New() *Quick {
+func New(cmd string) *Quick {
 	return &Quick{
-		Stderr: os.Stderr,
-		Stdin:  os.Stdin,
-		Stdout: os.Stdout,
+		Executor: factory.New(cmd),
+		Stderr:   os.Stderr,
+		Stdin:    os.Stdin,
+		Stdout:   os.Stdout,
 	}
 }
 
-func (q *Quick) Run(cmd string, dryRun bool) error {
+func (q *Quick) Run(dryRun bool) error {
+	// TODO Begin
+
+	if err := q.Executor.Exec(); err != nil {
+		return err
+	}
 
 	if dryRun {
 		// TODO Rollback

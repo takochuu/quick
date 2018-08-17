@@ -27,9 +27,10 @@ func run(args []string) int {
 		return 1
 	}
 
+	// TODO options
 	cmd := args[0]
-	cli := quick.New()
-	if err := cli.Run(cmd, *dryRun); err != nil {
+	cli := quick.New(cmd)
+	if err := cli.Run(*dryRun); err != nil {
 		glog.Errorln(err)
 		return 1
 	}
