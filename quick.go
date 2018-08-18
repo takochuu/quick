@@ -6,14 +6,6 @@ import (
 	"github.com/takochuu/quick/factory"
 )
 
-const (
-	migration = "migrate"
-	create    = "create"
-	rollback  = "rollback"
-	up        = "up"
-	down      = "down"
-)
-
 type Quick struct {
 	Executor factory.Executor
 	Stderr   *os.File
@@ -21,7 +13,8 @@ type Quick struct {
 	Stdout   *os.File
 }
 
-func New(cmd string) *Quick {
+func New(cmd, conf string) *Quick {
+	// TODO
 	return &Quick{
 		Executor: factory.New(cmd),
 		Stderr:   os.Stderr,

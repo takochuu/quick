@@ -7,5 +7,8 @@ func NewMigration() *Migration {
 }
 
 func (m *Migration) Exec() error {
+	// TODO DBに接続する
+	// TODO 当たっていないSchemaを調べる
+	// TODO 当たっていないSchemaを当てる
 	return nil
 }
